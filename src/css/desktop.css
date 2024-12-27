@@ -20,6 +20,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-color: var(--color-red);
+    padding: 88px 24px;
 }
 
 main {
@@ -44,6 +45,7 @@ h1 {
     letter-spacing: -0.52px;
     color: white;
     margin-bottom: 32px;
+    max-width: 15ch;
 }
 
 h2 {
@@ -86,6 +88,16 @@ form {
     margin-bottom: 8px;
 }
 
+.input-wrapper {
+    position: relative;
+}
+
+.error-icon {
+    position: absolute;
+    right: 27px;
+    top: 19px;
+}
+
 input {
     border-radius: 5px;
     width: 100%;
@@ -95,7 +107,7 @@ input {
     line-height: 26px;
     letter-spacing: 0.25px;
     color: var(--color-black);
-    border: 1px solid var(--color-gray);
+    border: 2px solid var(--color-gray);
     outline: none;
 }
 
@@ -105,9 +117,11 @@ input::placeholder {
 }
 
 input:focus {
-    border: 1px solid var(--color-purple);
+    border-color: var(--color-purple);
     caret-color: blue;
 }
+
+
 
 button {
     border-radius: 5px;
@@ -122,21 +136,39 @@ button {
     background-color: var(--color-green);
     box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
     text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
-p.terms_agreement {
+button:hover {
+    background-color: #38cc8cab;
+}
+
+
+.terms_agreement {
     font-weight: 500;
     font-size: 11px;
     line-height: 26px;
     letter-spacing: 0px;
     color: var(--color-gray-100);
-    display: flex;
-    gap: 2px;
-    align-items: center;
-    justify-content: center;
+
 }
 
-.terms_agreement a {
+.terms_agreement span {
     color: var(--color-red);
     font-weight: 700;
+    cursor: pointer;
+}
+
+input.error {
+    border-color: var(--color-red);
+}
+
+.error-message {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: auto;
+    letter-spacing: 0px;
+    color: var(--color-red);
+    margin-top: 6px;
 }

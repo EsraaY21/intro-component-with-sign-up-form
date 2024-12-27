@@ -9,7 +9,7 @@ function App() {
     password: "",
   });
 
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,14 +21,28 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { firstName, lastName, email, password } = formData;
-    if (!firstName || !lastName || !email || !password) {
-      setError(true);
+
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email validation regex
+
+    // Validate fields
+    if (!formData.firstName) newErrors.firstName = "First name cannot be empty";
+    if (!formData.lastName) newErrors.lastName = "Last name cannot be empty";
+    if (!formData.email) {
+      newErrors.email = "Email address cannot be empty";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Looks like this is not an email";
+    }
+    if (!formData.password) newErrors.password = "Password cannot be empty";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
     } else {
-      setError(false);
       console.log("Form submitted:", formData);
+      setErrors({});
     }
   };
+
   return (
     <>
       <main>
@@ -56,7 +70,7 @@ function App() {
                 placeholder="First Name"
                 value={formData.firstName}
                 onChange={handleChange}
-                error={error && !formData.firstName}
+                error={errors.firstName}
               />
               <InputField
                 type="text"
@@ -64,15 +78,15 @@ function App() {
                 placeholder="Last Name"
                 value={formData.lastName}
                 onChange={handleChange}
-                error={error && !formData.lastName}
+                error={errors.lastName}
               />
               <InputField
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
-                error={error && !formData.email}
+                error={errors.email}
               />
               <InputField
                 type="password"
@@ -80,14 +94,14 @@ function App() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                error={error && !formData.password}
+                error={errors.password}
               />
               <button type="submit">Claim your free trial</button>
             </form>
-            <p className="terms_agreement">
-              <span>By clicking the button, you are agreeing to our </span>
-              <a href=""> Terms and Services</a>
-            </p>
+            <a className="terms_agreement">
+              By clicking the button, you are agreeing to our
+              <span href=""> Terms and Services</span>
+            </a>
           </div>
         </div>
       </main>

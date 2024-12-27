@@ -11,10 +11,14 @@ function InputField({ type, placeholder, value, onChange, error, name }) {
         name={name}
         className={error ? "error" : ""}
       />
+
       {error && (
-        <span className="error-icon">
-          <IconError />
-        </span>
+        <>
+          <span className="error-icon">
+            <IconError />
+          </span>
+          <p className="error-message">{error}</p>
+        </>
       )}
     </div>
   );

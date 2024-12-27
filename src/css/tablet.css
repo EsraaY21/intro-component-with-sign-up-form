@@ -1,0 +1,14 @@
+@media (max-width: 700px) {
+    main {
+        flex-direction: column;
+        text-align: center;
+        gap: 64px;
+    }
+
+    h1 {
+        font-size: 28px;
+        line-height: 36px;
+        margin-inline: auto;
+        margin-bottom: 27px;
+    }
+}
