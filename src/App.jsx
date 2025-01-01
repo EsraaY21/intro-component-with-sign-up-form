@@ -23,7 +23,7 @@ function App() {
     e.preventDefault();
 
     const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Validate fields
     if (!formData.firstName) newErrors.firstName = "First name cannot be empty";
